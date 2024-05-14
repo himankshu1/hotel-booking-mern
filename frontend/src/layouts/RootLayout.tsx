@@ -1,11 +1,22 @@
 import { Outlet } from "react-router-dom";
-import Header from "../components/Header";
+import Header from "../components/shared/Header";
+import Hero from "@/components/shared/Hero";
+import Footer from "@/components/shared/Footer";
+
+// interface Props {
+//   children: React.ReactNode;
+// }
 
 const RootLayout = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <Outlet />
+      <Hero />
+      <div className="container mx-auto py-10 flex-1">
+        <Outlet />
+      </div>
+
+      <Footer />
     </div>
   );
 };
