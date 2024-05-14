@@ -11,7 +11,7 @@ const registerUser = async (req: Request, res: Response) => {
   // send to cookie
   // return the response
   try {
-    console.log(req.body);
+    // console.log(req.body);
     let user = await User.findOne({ email: req.body.email });
 
     if (user) {
