@@ -73,7 +73,10 @@ const signInUser = async (req: Request, res: Response) => {
     }
 
     // compare & match the password using bcrypt
-    const isPasswordMatched = bcrypt.compare(password, user.password);
+    console.log("Passwords :: ", user.password, password);
+    const isPasswordMatched = await bcrypt.compare(password, user.password);
+    console.log("isPasswordMatched? :: ", isPasswordMatched);
+
     if (!isPasswordMatched) {
       return res.status(400).json({ message: "invalid credentials" });
     }
