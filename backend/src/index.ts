@@ -12,7 +12,7 @@ app.use(cors());
 // mongodb connection
 connectToDB();
 
-app.get("/api/v1/test", async (req: Request, res: Response) => {
+app.post("/api/v1/user", async (req: Request, res: Response) => {
   res.json({ message: "its working..." });
 });
 
