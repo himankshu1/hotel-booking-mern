@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { User } from "../models/user.model";
 import jwt from "jsonwebtoken";
+import { validationResult } from "express-validator";
 
 // user registration
 const registerUser = async (req: Request, res: Response) => {
@@ -11,6 +12,12 @@ const registerUser = async (req: Request, res: Response) => {
   // send to cookie
   // return the response
   try {
+    // checking for errors with validator
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ message: errors.array() });
+    }
+
     // console.log(req.body);
     let user = await User.findOne({ email: req.body.email });
 
@@ -45,4 +52,7 @@ const registerUser = async (req: Request, res: Response) => {
   }
 };
 
-export default registerUser;
+// user login
+const signInUser = async () => {};
+
+export { registerUser, signInUser };
