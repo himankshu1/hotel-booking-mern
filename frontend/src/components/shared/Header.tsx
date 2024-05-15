@@ -34,6 +34,15 @@ const Header = () => {
             <LogIn />
             Sign In
           </Button>
+
+          {/* register button */}
+          <Button
+            variant="ghost"
+            onClick={() => navigate("/register")}
+            className="flex items-center text-emerald-300 px-3 font-bold hover:cursor-pointer hover:bg-emerald-500 hover:text-white gap-2"
+          >
+            Register
+          </Button>
         </span>
       </div>
     </div>
