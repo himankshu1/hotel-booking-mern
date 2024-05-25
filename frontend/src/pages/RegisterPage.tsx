@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 import { Mail } from "lucide-react";
 import { useForm } from "react-hook-form";
 
-type RegisterForm = {
+export type RegisterForm = {
   firstName: string;
   lastName: string;
   email: string;
@@ -30,7 +30,6 @@ const RegisterPage = () => {
 
   const registerHandler = handleSubmit((data) => {
     console.log(data);
-    console.log(errors);
   });
 
   return (
