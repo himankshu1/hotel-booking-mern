@@ -11,6 +11,8 @@ import { Label } from "@/components/ui/label";
 import { Link } from "react-router-dom";
 import { Mail } from "lucide-react";
 import { useForm } from "react-hook-form";
+import { useMutation } from "react-query";
+import * as apiClient from "../api-client";
 
 export type RegisterForm = {
   firstName: string;
@@ -28,8 +30,17 @@ const RegisterPage = () => {
     formState: { errors },
   } = useForm<RegisterForm>();
 
+  const mutation = useMutation(apiClient.register, {
+    onSuccess: () => {
+      console.log("user registered");
+    },
+    onError: (error: Error) => {
+      console.log("Error while user registration", error.message);
+    },
+  });
+
   const registerHandler = handleSubmit((data) => {
-    console.log(data);
+    mutation.mutate(data);
   });
 
   return (
@@ -106,9 +117,9 @@ const RegisterPage = () => {
               )}
 
               <div className="grid gap-2">
-                <Label htmlFor="password">Confirm password</Label>
+                <Label htmlFor="confirmPassword">Confirm password</Label>
                 <Input
-                  id="password"
+                  id="confirmPassword"
                   type="password"
                   placeholder="re-enter password"
                   {...register("confirmPassword", {

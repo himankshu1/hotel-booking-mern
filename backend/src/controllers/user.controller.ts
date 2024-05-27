@@ -46,7 +46,7 @@ const registerUser = async (req: Request, res: Response) => {
       maxAge: 86400000,
     });
 
-    return res.sendStatus(200);
+    return res.status(200).send({ message: "user registered" });
   } catch (error) {
     console.log("Error while registering the user :: ", error);
     res.status(500).json({ message: "something went wrong!" });
