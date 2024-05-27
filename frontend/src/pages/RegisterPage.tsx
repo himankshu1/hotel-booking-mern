@@ -13,6 +13,7 @@ import { Mail } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import * as apiClient from "../api-client";
+import { useAppContext } from "@/contexts/AppContext";
 
 export type RegisterForm = {
   firstName: string;
@@ -23,6 +24,8 @@ export type RegisterForm = {
 };
 
 const RegisterPage = () => {
+  const { showToast } = useAppContext();
+
   const {
     register,
     watch,
@@ -32,7 +35,7 @@ const RegisterPage = () => {
 
   const mutation = useMutation(apiClient.register, {
     onSuccess: () => {
-      console.log("user registered");
+      showToast({ message: "Registration successful", type: "SUCCESS" });
     },
     onError: (error: Error) => {
       console.log("Error while user registration", error.message);
